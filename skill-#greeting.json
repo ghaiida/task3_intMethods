@@ -1,0 +1,221 @@
+{
+  "intents": [
+    {
+      "intent": "arm_descriptions",
+      "examples": [
+        {
+          "text": "arm length"
+        },
+        {
+          "text": "arm weight"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "goodbyes",
+      "examples": [
+        {
+          "text": "bye"
+        },
+        {
+          "text": "nice meeting you"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "greetings",
+      "examples": [
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hi"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "thank_yous",
+      "examples": [
+        {
+          "text": "thanks"
+        },
+        {
+          "text": "thank you"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "hello",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "hi nice meeting you"
+              },
+              {
+                "text": "hello"
+              },
+              {
+                "text": "hi"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#greetings",
+      "dialog_node": "Anything else",
+      "previous_sibling": "Welcome",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "frame",
+      "title": "description arm",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "2 m"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#arm_descriptions",
+      "dialog_node": "node_10_1625165644021",
+      "previous_sibling": "Anything else"
+    },
+    {
+      "type": "standard",
+      "title": "goodbyes",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "bye nice meeting you too"
+              },
+              {
+                "text": "bye, don't forget me"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#goodbyes",
+      "dialog_node": "node_2_1625166125449",
+      "previous_sibling": "node_3_1625166025885"
+    },
+    {
+      "type": "standard",
+      "title": "thank you",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "my pleasure"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#thank_yous",
+      "dialog_node": "node_3_1625166025885",
+      "previous_sibling": "node_10_1625165644021"
+    },
+    {
+      "type": "standard",
+      "title": "arm weight",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "80 ton"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1625165644021",
+      "conditions": "#arm_descriptions",
+      "dialog_node": "node_6_1625166480392"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "#greeting",
+  "language": "en",
+  "description": ""
+}
